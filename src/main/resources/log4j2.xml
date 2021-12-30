@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" dest="err">
+
+    <Appenders>
+        <File name="File" fileName="log.txt" >
+            <PatternLayout pattern="%d %5.5p [%15.15t] %40.40c{1}:%-4.4L %m%n" />
+        </File>
+    </Appenders>
+    <Loggers>
+        <Logger name="org.apache.catalina.startup.DigesterFactory" level="error" />
+        <Logger name="org.apache.catalina.util.LifecycleBase" level="error" />
+        <Logger name="org.apache.coyote.http11.Http11NioProtocol" level="warn" />
+        <Logger name="org.apache.sshd.common.util.SecurityUtils" level="warn"/>
+        <Logger name="org.apache.tomcat.util.net.NioSelectorPool" level="warn" />
+        <Logger name="org.eclipse.jetty.util.component.AbstractLifeCycle" level="error" />
+        <Logger name="org.hibernate.validator.internal.util.Version" level="warn" />
+        <Logger name="org.springframework.boot.actuate.endpoint.jmx" level="warn"/>
+        <Root level="info">
+            <AppenderRef ref="File" />
+        </Root>
+    </Loggers>
+</Configuration>
