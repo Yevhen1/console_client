@@ -3,31 +3,21 @@ package com.example.consoleclient;
 import com.example.consoleclient.model.Book;
 import com.example.consoleclient.model.Bookmark;
 import com.example.consoleclient.model.Reader;
-//import org.slf4j.Logger;
-//import org.slf4j.LoggerFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.http.HttpMessageConverters;
-import org.springframework.boot.logging.LoggingSystem;
-import org.springframework.boot.logging.log4j2.Log4J2LoggingSystem;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.List;
 
 
 @SpringBootApplication
@@ -36,8 +26,6 @@ public class ConsoleClientApplication {
 	Logger logger = LogManager.getLogger();
 
 	public static void main(String[] args) {
-//		System.setProperty("org.springframework.boot.logging.LoggingSystem",
-//				"org.springframework.boot.logging.log4j2.Log4J2LoggingSystem");
 		SpringApplication.run(ConsoleClientApplication.class, args);
 	}
 
@@ -45,14 +33,6 @@ public class ConsoleClientApplication {
 	private String readerName;
 	private int id;
 
-//	@Bean
-//	public HttpMessageConverters customConverters(ApplicationContext context) {
-//		Jackson2ObjectMapperBuilder builder = Jackson2ObjectMapperBuilder.json();
-//		if (context != null) {
-//			builder.applicationContext(context);
-//		}
-//		return new HttpMessageConverters(new MappingJackson2HttpMessageConverter(builder.build()));
-//	}
 
 	@Bean
 	public CommandLineRunner run(){
@@ -139,8 +119,8 @@ public class ConsoleClientApplication {
 
 	private void setBook(String bookName, String pageNumber){
 		RestTemplate restTemplate = new RestTemplate();
-		ResponseEntity<HttpStatus> response = restTemplate.getForEntity(
-				URL + "setBookMark/" + id + "/" + bookName + "/" + pageNumber, HttpStatus.class);
+		ResponseEntity<String> response = restTemplate.getForEntity(
+				URL + "setBookMark/" + id + "/" + bookName + "/" + pageNumber, String.class);
 		System.out.println(String.valueOf(response.getStatusCode().value()));
 	}
 
